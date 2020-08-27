@@ -3,23 +3,28 @@
     <div ref="slotBar" class="table-bar">
       <slot name="bar"></slot>
     </div>
+    <!-- таблица написана на дивай и флексах для удобства ее использования в будущем -->
     <div class="table">
       <div class="table_header">
+        <!-- колонка Даты -->
         <div @click="sorting('data')"
             :class="{active: sortKey == 'data'}"
             class="table_header-cell column-date">
             Дата
             <icon-sorting :class="{reverse: reverse && sortKey == 'data'}"></icon-sorting>
         </div>
+        <!-- колонка Операции -->
         <div @click="sorting('type')"
             :class="{active: sortKey == 'type'}"
             class="table_header-cell column-type">
             Операция
             <icon-sorting :class="{reverse: reverse && sortKey == 'type'}"></icon-sorting>
         </div>
+        <!-- колонка Культура -->
         <div class="table_header-cell column-plant">
             Культура
         </div>
+        <!-- колонка Качество -->
         <div @click="sorting('assessment')"
             :class="{active: sortKey == 'assessment'}"
             class="table_header-cell column-assessment">
@@ -27,6 +32,7 @@
             <icon-sorting :class="{reverse: reverse && sortKey == 'assessment'}"></icon-sorting>
         </div>
       </div>
+      <!-- тело таблицы -->
       <div class="table_body">
         <div v-for="operation of operations" :key="operation.id" class="table_body-row">
           <div class="table_body-cell cell-date column-date">
@@ -37,12 +43,14 @@
           </div>
           <div class="table_body-cell cell-plant column-plant">
             <span class="cell-plant_plant-icons">
+              <!-- переиспользуемые компоненты иконок -->
               <icon-crop-wheat v-if="operation.plantIcon == 'winterwheat'"></icon-crop-wheat>
               <icon-crop v-if="operation.plantIcon == 'wheat'"></icon-crop>
             </span>
             {{ operation.plant }}
           </div>
           <div class="table_body-cell cell-assessment">
+            <!-- переиспользуемый компонент иконки -->
             <icon-assessment :class="operation.assessmentClass"></icon-assessment>
             {{ operation.assessment }}
           </div>

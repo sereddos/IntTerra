@@ -1,11 +1,18 @@
 <template>
   <div class="operations">
-    <h1>Операции на поле 112</h1>
+    <!-- переисполуемый компонент для отрисовки заголовка страницы -->
+    <page-title title="Операции на поле 112"></page-title>
+    <!-- переисполуемый компонент для отрисовки таблиц -->
     <Table :operations="operationsSorting">
       <template slot="bar">
+        <!-- переисполуемый компонент для отрисовки фильтров таблицы -->
         <table-filter :filterData="filterData" @click="sortOperations"></table-filter>
+
+        <!-- переисполуемый компонент для отрисовки кнопок -->
         <v-button modifier="add">
+          <!-- слоты для отрисовки иконок в кнопках -->
           <template slot="icons">
+            <!-- переисполуемый компонент для отрисовки иконки крестик -->
             <icon-plus></icon-plus>
           </template>
           Добавить операцию
@@ -81,10 +88,12 @@ export default {
       return (a, b) => a[field] < b[field] ? 1 : -1
     },
     sortOperations (type) {
+      // сортировка данных по дате
       const operations = this.operations.filter((operation) => {
         const dateForSort = moment(operation.dateForSort).format('YYYY-MM-DD')
         return type === 'made' ? moment(dateForSort).isBefore(this.today) : moment(dateForSort).isAfter(this.today)
       })
+      // записываем отсортированные данные в operationsSorting для передачи в таблицу
       this.operationsSorting = operations
     }
   },
@@ -142,15 +151,6 @@ export default {
 <style scoped lang="scss">
 .operations {
   padding: 23px 30px 0;
-}
-
-h1 {
-  font-family: LucidaGrande;
-  font-size: 25px;
-  color: #333333;
-  letter-spacing: -0.8px;
-  line-height: 31px;
-  margin: 0 0 11px;
 }
 
 </style>

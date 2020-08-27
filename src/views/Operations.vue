@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import OperationsTable from '@/pages/OperationsTable.vue'
 
 export default {

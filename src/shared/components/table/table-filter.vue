@@ -26,10 +26,11 @@ export default {
     modifier: {
       type: String,
       default: null
-    },
-    activeItem: {
-      type: String,
-      default: 'made'
+    }
+  },
+  data: () => {
+    return {
+      activeItem: 'made'
     }
   },
   methods: {

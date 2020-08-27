@@ -1,7 +1,9 @@
 <template>
   <button class="button" @click="click" :class="getClass" :disabled="isDisabled">
     <slot name="icons"></slot>
-    <span class="button_text"><slot></slot></span>
+    <span class="button_text">
+      <slot></slot>
+    </span>
   </button>
 </template>
 
